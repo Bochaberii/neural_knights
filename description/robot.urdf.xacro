@@ -1,7 +1,48 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="neural_knights_rover">
 
-    <!-- Example link -->
-    <link name="base_link"></link>
+  <!-- Include files -->
+  <xacro:include filename="rover_properties.xacro"/>
+  <xacro:include filename="rover_macros.xacro"/>
+
+  <!-- Base link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="${Rlower}" length="${lower_plate_thk}"/></geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="${Rlower}" length="${lower_plate_thk}"/></geometry>
+    </collision>
+  </link>
+
+  <!-- Upper plate -->
+  <link name="upper_plate">
+    <visual>
+      <origin xyz="0 0 ${plate_gap}" rpy="0 0 0"/>
+      <geometry><cylinder radius="${Rupper}" length="${upper_plate_thk}"/></geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${plate_gap}" rpy="0 0 0"/>
+      <geometry><cylinder radius="${Rupper}" length="${upper_plate_thk}"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="upper_plate_mount" type="fixed">
+    <parent link="base_link"/>
+    <child link="upper_plate"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheels -->
+  <xacro:drive_wheel name="left_wheel" ysign="1"/>
+  <xacro:drive_wheel name="right_wheel" ysign="-1"/>
+
+  <!-- Casters -->
+  <xacro:caster name="front_caster" xsign="1"/>
+  <xacro:caster name="rear_caster" xsign="-1"/>
 
 </robot>
