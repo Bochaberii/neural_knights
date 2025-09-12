@@ -1,13 +1,14 @@
-// #ifndef PACKET_H
-// #define PACKET_H
+#ifndef PACKET_H
+#define PACKET_H
 
-// struct MotorDrivePacket {
-//   int rpm;
-//   int distance;
-//   int speed;
-//   float current;
-// };
+struct MotorDrivePacket
+{
+    int rpm;
+    float distance;
+    int speed;
+    float current;
+};
 
-// void sendtoSPI(const MotorDrivePacket &packet);
+void sendtoSPI(const MotorDrivePacket &packet);
 
-// #endif
+#endif
