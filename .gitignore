@@ -1,0 +1,13 @@
+# Build and cache artifacts
+build/
+install/
+log/
+**/__pycache__/
+*.pyc
+
+# PlatformIO build output
+motors/.pio/
+
+# Keep these as separate repos (avoid embedded-repo warnings)
+intergration/gazebo_ignition_fortress/
+my_robot_package/
